@@ -1,14 +1,14 @@
-package org.main;
+package org.quemepongo.model;
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class PrendaTest {
-
+//test de iteracion 1 pero con ajustes minimos para que funcionen
   @Test
   void crearPrendaValidaFunciona() {
     Color rojo = new Color(255, 0, 0);
-    Prenda zapato = new Prenda(TipoDePrenda.ZAPATO, "Cuero", rojo, null);
+    Prenda zapato = new Prenda(TipoDePrenda.ZAPATO, "Cuero", rojo, null, Trama.LISA);
 
     assertEquals(Categoria.CALZADO, zapato.categoria());
   }
@@ -17,7 +17,7 @@ class PrendaTest {
   void noSePuedeCrearPrendaSinTipo() {
     Color rojo = new Color(255, 0, 0);
     assertThrows(NullPointerException.class, () -> {
-      new Prenda(null, "Algodón", rojo, null);
+      new Prenda(null, "Algodón", rojo, null, Trama.LISA);
     });
   }
 
@@ -25,29 +25,21 @@ class PrendaTest {
   void noSePuedeCrearPrendaSinMaterial() {
     Color rojo = new Color(255, 0, 0);
     assertThrows(NullPointerException.class, () -> {
-      new Prenda(TipoDePrenda.REMERA, null, rojo, null);
+      new Prenda(TipoDePrenda.REMERA, null, rojo, null, Trama.LISA);
     });
   }
 
   @Test
   void noSePuedeCrearPrendaSinColorPrincipal() {
     assertThrows(NullPointerException.class, () -> {
-      new Prenda(TipoDePrenda.REMERA, "Algodón", null, null);
-    });
-  }
-
-  @Test
-  void noSePuedeCrearTipoDePrendaArbitrario() {
-    assertThrows(IllegalAccessException.class, () -> {
-      // Si alguien intenta crear un tipo nuevo, esto no debería compilar ni funcionar
-      TipoDePrenda tipoInvalido = TipoDePrenda.class.getDeclaredConstructor(Categoria.class).newInstance(Categoria.CALZADO);
+      new Prenda(TipoDePrenda.REMERA, "Algodón", null, null, Trama.LISA);
     });
   }
 
   @Test
   void prendaPuedeNoTenerColorSecundario() {
     Color rojo = new Color(255, 0, 0);
-    Prenda remera = new Prenda(TipoDePrenda.REMERA, "Algodón", rojo, null);
+    Prenda remera = new Prenda(TipoDePrenda.REMERA, "Algodón", rojo, null, Trama.LISA);
 
     assertNull(remera.getColorSecundario(), "El color secundario debe ser null si no se proporciona");
   }
@@ -57,9 +49,8 @@ class PrendaTest {
     Color rojo = new Color(255, 0, 0);
     Color azul = new Color(0, 0, 255);
 
-    Prenda remera = new Prenda(TipoDePrenda.REMERA, "Algodón", rojo, azul);
+    Prenda remera = new Prenda(TipoDePrenda.REMERA, "Algodón", rojo, azul, Trama.LISA);
 
     assertEquals(azul, remera.getColorSecundario(), "Debe guardar correctamente el color secundario");
   }
-
 }

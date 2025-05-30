@@ -1,4 +1,4 @@
-package org.main;
+package org.quemepongo.model;
 
 public class TipoDePrenda {
   private final Categoria categoria;

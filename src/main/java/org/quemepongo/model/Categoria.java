@@ -1,4 +1,4 @@
-package org.main;
+package org.quemepongo.model;
 
 public enum Categoria {
   PARTE_SUPERIOR,
