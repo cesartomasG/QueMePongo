@@ -3,6 +3,7 @@ package org.quemepongo.borrador;
 import static java.util.Objects.requireNonNull;
 
 import org.quemepongo.model.Color;
+import org.quemepongo.model.Formalidad;
 import org.quemepongo.model.Prenda;
 import org.quemepongo.model.TipoDePrenda;
 import org.quemepongo.model.Trama;
@@ -13,6 +14,7 @@ public class BorradorPrenda {
   private Color colorPrincipal;
   private Color colorSecundario;
   private Trama trama = Trama.LISA; // valor por defecto
+  private Formalidad formalidad;
 
   public BorradorPrenda(TipoDePrenda tipoDePrenda) {
     this.tipoDePrenda = requireNonNull(tipoDePrenda, "tipo es obligatorio");
@@ -38,14 +40,19 @@ public class BorradorPrenda {
     this.trama = trama;
   }
 
+  public void setFormalidad(Formalidad formalidad) {
+    this.formalidad = formalidad;
+  }
+
   public Prenda crearPrenda() {
     validarCampos();
-    return new Prenda(tipoDePrenda, material, colorPrincipal, colorSecundario, trama);
+    return new Prenda(tipoDePrenda, material, colorPrincipal, colorSecundario, trama, formalidad);
   }
 
   private void validarCampos(){
     requireNonNull(material, "material es obligatorio");
     requireNonNull(colorPrincipal, "color principal es obligatorio");
+    requireNonNull(formalidad, "formalidad es obligatorio");
   }
 }
 

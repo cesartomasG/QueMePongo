@@ -3,6 +3,7 @@ package org.quemepongo.borrador;
 import org.junit.jupiter.api.Test;
 import org.quemepongo.model.Categoria;
 import org.quemepongo.model.Color;
+import org.quemepongo.model.Formalidad;
 import org.quemepongo.model.Prenda;
 import org.quemepongo.model.TipoDePrenda;
 import org.quemepongo.model.Trama;
@@ -16,6 +17,7 @@ public class BorradorPrendaTest {
     BorradorPrenda borrador = new BorradorPrenda(TipoDePrenda.REMERA);
     borrador.setMaterial("algodón");
     borrador.setColorPrincipal(new Color(255, 0, 0));
+    borrador.setFormalidad(Formalidad.INFORMAL);
 
     Prenda prenda = borrador.crearPrenda();
 
@@ -27,6 +29,7 @@ public class BorradorPrendaTest {
   void noSePuedeCrearPrendaSinMaterial() {
     BorradorPrenda borrador = new BorradorPrenda(TipoDePrenda.ZAPATO);
     borrador.setColorPrincipal(new Color(0, 0, 0));
+    borrador.setFormalidad(Formalidad.FORMAL);
 
     assertThrows(NullPointerException.class, borrador::crearPrenda);
   }
@@ -35,6 +38,7 @@ public class BorradorPrendaTest {
   void noSePuedeCrearPrendaSinColorPrincipal() {
     BorradorPrenda borrador = new BorradorPrenda(TipoDePrenda.ZAPATO);
     borrador.setMaterial("cuero");
+    borrador.setFormalidad(Formalidad.FORMAL);
 
     assertThrows(NullPointerException.class, borrador::crearPrenda);
   }
@@ -44,6 +48,7 @@ public class BorradorPrendaTest {
     BorradorPrenda borrador = new BorradorPrenda(TipoDePrenda.PANTALON);
     borrador.setMaterial("jean");
     borrador.setColorPrincipal(new Color(50, 50, 50));
+    borrador.setFormalidad(Formalidad.FORMAL);
     borrador.setTrama(Trama.CUADROS);
 
     Prenda prenda = borrador.crearPrenda();
